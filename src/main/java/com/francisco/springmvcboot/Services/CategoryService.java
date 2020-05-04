@@ -9,10 +9,9 @@ import org.springframework.stereotype.Service;
 import com.francisco.springmvcboot.Entities.Category;
 import com.francisco.springmvcboot.Entities.Item;
 import com.francisco.springmvcboot.Entities.ItemDescription;
-
-import Repositories.CategoryRepo;
-import Repositories.ItemDescriptionRepo;
-import Repositories.ItemRepo;
+import com.francisco.springmvcboot.Repositories.CategoryRepo;
+import com.francisco.springmvcboot.Repositories.ItemDescriptionRepo;
+import com.francisco.springmvcboot.Repositories.ItemRepo;
 
 @Service
 public class CategoryService implements GenericService<Category> {
@@ -50,12 +49,23 @@ public class CategoryService implements GenericService<Category> {
 		List<Item> listItems = new ArrayList<>();
 		List<ItemDescription> listItemDescriptions = new ArrayList<>();
 		Category category = categoryRepo.getOne(id);
+		listItemDescriptions = category.getItemDescriptions();
+		for(ItemDescription i: listItemDescriptions) {
+			listItems.addAll(i.getItems());
+		}
+		for(Item i: listItems) {
+			itemRepo.delete(i);
+		}
+		for(ItemDescription i: listItemDescriptions) {
+			itemDescriptionRepo.delete(i);
+		}
+		categoryRepo.delete(category);
 	}
 
 	@Override
 	public List<Category> getAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return categoryRepo.findAll();
 	}
 
 }

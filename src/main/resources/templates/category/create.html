@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/main :: head">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:insert="fragments/main :: navbar"></div>
+		<form action="createAction" method="POST">
+			<input type="text" name="name"><br>
+			<input type="submit" value="Enviar">
+		</form>
+	
+</body>
+</html>

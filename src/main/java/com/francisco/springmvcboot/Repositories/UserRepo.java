@@ -1,4 +1,4 @@
-package Repositories;
+package com.francisco.springmvcboot.Repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

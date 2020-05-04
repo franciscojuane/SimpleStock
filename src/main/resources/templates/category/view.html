@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/main :: head">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:insert="fragments/main :: navbar"></div>
+
+	<br>
+	<h5>Category</h5><span th:insert="fragments/buttons :: edit(${entity},${category.id})"></span><span th:insert="fragments/buttons :: delete(${entity},${category.id})"></span>
+	<br>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Propiedad</th>
+				<th scope="col">Valor</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>ID</th>
+				<td th:text="${category.id}"></td>
+			</tr>
+			<tr>
+				<th>Name</th>
+				<td th:text="${category.name}"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<br>
+	<h6>Items</h6>
+	<br>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Name</th>
+				<th>Description</th>
+				<th>Weight</th>
+				<th>Amount</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="id : ${itemdescriptions}">
+				<td th:text="${id.name}"></td>
+				<td th:text="${id.description}"></td>
+				<td th:text="${id.weight}"></td>
+				<td th:text="${#lists.size(id.items)}"></td>
+				<td><span th:insert="fragments/buttons :: view('itemDescriptions',${category.id})"></span></td>
+			</tr>
+
+
+		</tbody>
+	</table>
+</body>
+</html>

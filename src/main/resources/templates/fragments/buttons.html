@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:fragment="create">
+		<a href="create"><button type="button"
+				class="btn btn-primary btn-sm">Create</button></a>
+	</div>
+	
+	<span th:fragment="view(entity,id)">
+	<a th:href="${'/' + entity + '/view/' + id}"><button type="button" class="btn btn-success btn-sm">View</button></a>
+	</span>
+	
+	<span th:fragment="edit(entity,id)">
+	 <a th:href="${'/' + entity + '/edit/' + id}"><button type="button" class="btn btn-warning btn-sm">Edit</button></a>
+	</span>
+	
+	<span th:fragment="delete(entity,id)">
+	<a th:href="${'/' + entity + '/delete/' + id}"><button type="button" class="btn btn-danger btn-sm">Delete</button></a>
+	</span>
+</body>
+</html>
