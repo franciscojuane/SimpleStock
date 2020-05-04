@@ -6,11 +6,16 @@
 </head>
 <body>
 	<div th:insert="fragments/main :: navbar"></div>
-		<form action="/category/editAction" method="POST">
-			<input type="hidden" name="id" th:value="${category.id}">
-			<input type="text" name="name" th:value="${category.name}"><br>
-			<input type="submit" value="Enviar">
-		</form>
-	
+
+	<form action="/category/editAction" method="POST">
+		<input type="hidden" name="id" th:value="${category.id}">
+		<div class="form-group">
+			<label>Name</label> <input type="text" class="form-control"
+				name="name" th:value="${category.name}">
+
+		</div>
+		<input class="btn btn-primary btn-sm" type="submit" value="Enviar">
+	</form>
+
 </body>
 </html>

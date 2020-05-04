@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:fragment="horizontal(title, attributes, attributeNames, elements)">
+		<h5 th:text="${title}"></h5>
+		<div th:insert="fragments/buttons :: create"></div>
+		<br>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th th:each="attrib: ${attributeNames}" scope="col" th:text="${attrib}"></th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="elem : ${elements}">
+					<th scope="row" th:each="attrib, iter : ${attributes}" th:text="${elem.__${attributes[iter.index]}__}"></th>
+					
+					<td><span><span
+							th:replace="fragments/buttons :: view(${entity},${elem.id})"></span><span
+							th:replace="fragments/buttons :: edit(${entity},${elem.id})"></span><span
+							th:replace="fragments/buttons :: delete(${entity},${elem.id})"></span></span></td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

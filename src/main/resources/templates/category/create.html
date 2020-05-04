@@ -6,10 +6,14 @@
 </head>
 <body>
 	<div th:insert="fragments/main :: navbar"></div>
-		<form action="createAction" method="POST">
-			<input type="text" name="name"><br>
-			<input type="submit" value="Enviar">
-		</form>
-	
+
+	<form action="/category/createAction" method="POST">
+		<div class="form-group">
+			<label>Name</label> <input type="text" class="form-control"
+				name="name">
+		</div>
+		<input class="btn btn-primary btn-sm" type="submit" value="Enviar">
+	</form>
+
 </body>
 </html>
