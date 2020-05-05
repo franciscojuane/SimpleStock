@@ -37,6 +37,9 @@ public class ItemDescription {
 	@OneToMany(mappedBy="itemDescription")
 	private List<Item> items;
 	
+	public int getAmount() {
+		return items.size();
+	}
 	
 	public ItemDescription() {
 		super();

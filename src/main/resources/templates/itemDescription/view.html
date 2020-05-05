@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/main :: head">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:insert="fragments/main :: navbar"></div>
+	<br>
+	<div
+		th:insert="fragments/tables :: vertical('Item Description',${new String[]{'id','name','description','weight','category.name'}},${new String[]{'ID','Name','Description','Weight','Category'}},${itemDescription})"></div>
+	<br>
+
+	<div
+		th:insert="fragments/tables :: horizontal('Items', ${new String[]{'id','location'}}, ${new String[]{'Serial Number','Location'}}, ${items}, ${'/itemDescription/view/' + id + '/add/item'} )">
+	</div>
+
+</body>
+</html>

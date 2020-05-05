@@ -6,54 +6,14 @@
 </head>
 <body>
 	<div th:insert="fragments/main :: navbar"></div>
-
 	<br>
-	<h5>Category</h5><span th:insert="fragments/buttons :: edit(${entity},${category.id})"></span><span th:insert="fragments/buttons :: delete(${entity},${category.id})"></span>
+	<div
+		th:insert="fragments/tables :: vertical('Category',${new String[]{'id','name'}},${new String[]{'ID','Name'}},${category})"></div>
 	<br>
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th scope="col">Propiedad</th>
-				<th scope="col">Valor</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<th>ID</th>
-				<td th:text="${category.id}"></td>
-			</tr>
-			<tr>
-				<th>Name</th>
-				<td th:text="${category.name}"></td>
-			</tr>
-		</tbody>
-	</table>
-	
-	<br>
-	<h6>Items</h6>
-	<br>
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th scope="col">Name</th>
-				<th>Description</th>
-				<th>Weight</th>
-				<th>Amount</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
 
-		<tbody>
-			<tr th:each="id : ${itemdescriptions}">
-				<td th:text="${id.name}"></td>
-				<td th:text="${id.description}"></td>
-				<td th:text="${id.weight}"></td>
-				<td th:text="${#lists.size(id.items)}"></td>
-				<td><span th:insert="fragments/buttons :: view('itemDescriptions',${category.id})"></span></td>
-			</tr>
+	<div
+		th:insert="fragments/tables :: horizontal('Items', ${new String[]{'name','description','weight','amount'}}, ${new String[]{'Name','Description','Weight','Amount'}}, ${itemDescriptions}, ${'/category/view/' + id + '/create/itemDescription'} )">
+	</div>
 
-
-		</tbody>
-	</table>
 </body>
 </html>

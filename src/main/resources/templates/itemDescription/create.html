@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/main :: head">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:insert="fragments/main :: navbar"></div>
+
+	<form action="/itemDescription/createAction" method="POST">
+		<div class="form-group">
+			<label>Name</label> <input type="text" class="form-control"
+				name="name"><br>
+				<label>Description</label> <input type="text" class="form-control"
+				name="description"><br>
+				<label>Weight</label> <input type="text" class="form-control"
+				name="weight"><br>
+				<label>Category</label> <select class="form-control"
+				name="category">
+				<option value=""></option> 
+				<option th:each="elem : ${categoryList}" th:value="${elem.id}" th:text="${elem.name}" th:selected="${category?.id==elem.id}">
+				</select>
+				<br>
+		</div>
+		<input class="btn btn-primary btn-sm" type="submit" value="Enviar">
+	</form>
+
+</body>
+</html>

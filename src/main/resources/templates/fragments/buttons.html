@@ -5,11 +5,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div th:fragment="create">
-		<a href="create"><button type="button"
+	<div th:fragment="create(url)">
+		<a th:href="${url}"><button type="button"
 				class="btn btn-primary btn-sm">Create</button></a>
 	</div>
-	
 	<span th:fragment="view(entity,id)">
 	<a th:href="${'/' + entity + '/view/' + id}"><button type="button" class="btn btn-success btn-sm">View</button></a>
 	</span>

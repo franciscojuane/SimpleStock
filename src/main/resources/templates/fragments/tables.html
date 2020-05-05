@@ -5,15 +5,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div th:fragment="horizontal(title, attributes, attributeNames, elements)">
+	<div th:fragment="horizontal(title, attributes, attributeNames, elements, addurl)">
 		<h5 th:text="${title}"></h5>
-		<div th:insert="fragments/buttons :: create"></div>
+		<div th:insert="fragments/buttons :: create(${addurl})"></div>
+		
+	
 		<br>
 		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th th:each="attrib: ${attributeNames}" scope="col" th:text="${attrib}"></th>
-					<th>Acciones</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,6 +30,28 @@
 
 			</tbody>
 		</table>
+	</div>
+	
+	
+	<div th:fragment="vertical(title, attributes, attributeNames, element)">
+		<br>
+	<h5 th:text="${title}"></h5><span th:insert="fragments/buttons :: edit(${entity},${element.id})"></span><span th:insert="fragments/buttons :: delete(${entity},${element.id})"></span>
+	<br>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Property</th>
+				<th scope="col">Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="attrib, iter : ${attributes}">
+				<th th:text="${attributeNames[iter.index]}"></th>
+				<td th:text="${element.__${attributes[iter.index]}__}"></td>
+			</tr>
+		</tbody>
+	</table>
+	
 	</div>
 </body>
 </html>
