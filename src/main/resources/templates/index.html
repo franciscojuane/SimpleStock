@@ -4,13 +4,79 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div th:insert="fragments/main :: navbar">
-</div>
+	<div th:insert="fragments/main :: navbar"></div>
+	<br>
+	<div class="container jumbotron" style="padding: 1rem 2rem">
+		<h4>
+			Welcome to <b><span
+				th:text="${@environment.getProperty('app.name')}"></span> v.<span
+				th:text=${@environment.getProperty('app.version')}></span>!</b>
+		</h4>
+		<br>This site will let you manage items, their categories and
+		location in a very simple way.<br>
+		<br>
+		<h5>Features:</h5>
+		<ul>
+		<li>xxx</li>
+		
+		</ul>
+		<br>
+		<h5>Todo:</h5>
+		<ul>
+			<li>Logging using Aspect Oriented Programming</li>
+			<li>Barcode Generation</li>
+			<li>Improving browsing</li>
+			<li>Report generation</li>
+
+
+
+
+		</ul>
+	</div>
+	<div class="container jumbotron" style="padding: 1rem 2rem">
+
+		<h5>Author</h5>
+		<br>
+		<div class="row">
+
+			<div class="col-lg-2 col-sm-6">
+			<center>
+				<img src="/photo.png" style="max-width: 80%">
+			</center>
+			</div>
+
+			<div class="col-lg-10 col-sm-6">
+				<b>Name:</b> Francisco Juane <br> <b>E-Mail: </b> franciscojuaneutn@gmail.com
+				<br> <b>Mobile phone:</b> +5493816164289 <br>
+				<b>Education: </b>
+				<ul>
+				<li>Systems Analyst (Average Grade: 9.02)</li>
+				<li>Information Systems Engineer (Only Thesis Defense Remaining)</li>
+				</ul>
+				<b>Certifications: </b>
+				<ul>
+				<li>Oracle Certified Associate</li>
+				<li>Oracle Certified Professional</li>
+				<li>Oracle Certified Expert</li>
+				<a href="https://www.youracclaim.com/users/franciscojuane/" target="_blank"><input type="button" class="btn btn-primary btn-xs" value="Check Certifications"></a>
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+	<!---
+<div class="container jumbotron" style="padding: 1rem 2rem">
 <h4>Manage</h4>
-<a href="/category/list">Category</a><br>
-<a href="/itemDescription/list">ItemDescription</a><br>
-<a href="/item/list">Item</a><br>
-<a href="/location/list">Location</a><br>
-<a href="/user/list">User</a><br>
+
+
+<a href="/category/list"><button type="button" class="btn btn-danger btn-sm">Category</button></a>
+<a href="/itemDescription/list"><button type="button" class="btn btn-primary btn-sm" style="background-color: #ff9000 !important; border-color: #ff9000 !important">Items Descriptions</button></a>
+<a href="/item/list"><button type="button" class="btn btn-warning btn-sm">Item</button></a>
+<a href="/location/list"><button type="button" class="btn btn-success btn-sm">Location</button></a>
+<a href="/user/list"><button type="button" class="btn btn-primary btn-sm">User</button></a>
+
+</div>
+--->
 </body>
 </html>

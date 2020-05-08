@@ -12,7 +12,7 @@
 	<br>
 
 	<div
-		th:insert="fragments/tables :: horizontal('Items', ${new String[]{'name','description','weight','amount'}}, ${new String[]{'Name','Description','Weight','Amount'}}, ${itemDescriptions}, ${'/category/view/' + id + '/create/itemDescription'} )">
+		th:insert="fragments/tables :: horizontal('item','Item Descriptions', ${new String[]{'name','description','weight','amount'}}, ${new String[]{'Name','Description','Weight','Amount'}}, ${itemDescriptions}, ${'/category/view/' + id + '/create/itemDescription'} )">
 	</div>
 
 </body>

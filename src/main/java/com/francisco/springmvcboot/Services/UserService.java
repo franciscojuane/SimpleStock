@@ -3,6 +3,7 @@ package com.francisco.springmvcboot.Services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.francisco.springmvcboot.Entities.User;
@@ -14,9 +15,13 @@ public class UserService implements GenericService<User> {
 	@Autowired
 	UserRepo userRepo;
 	
+	@Autowired
+	PasswordEncoder pwdenc;
+	
 	@Override
 	public User create(User t) {
 		// TODO Auto-generated method stub
+		t.setPassword(pwdenc.encode(t.getPassword()));
 		return userRepo.save(t);
 	}
 

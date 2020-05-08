@@ -21,16 +21,25 @@
 			src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 			crossorigin="anonymous"></script>
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<style>
-		td {
-		white-space: nowrap;
-		}
-</style>
+			td {
+				white-space: nowrap;
+			}
+			
+			.btn-group-xs>.btn, .btn-xs {
+				padding: .25rem .4rem;
+				font-size: .875rem;
+				line-height: .5;
+				border-radius: .2rem;
+			}
+		</style>
 
 	</div>
 
 	<div th:fragment="navbar">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="/"
 				th:text="${@environment.getProperty('app.name')}"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -45,11 +54,43 @@
 					<li class="nav-item active"><a class="nav-link" href="/">Home
 							<span class="sr-only">(current)</span>
 					</a></li>
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> Manage </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="/category/list"><button
+									type="button" class="btn btn-danger btn-sm">Categories</button></a>
+							<a class="dropdown-item" href="/itemDescription/list"><button
+									type="button" class="btn btn-primary btn-sm"
+									style="background-color: #ff9000 !important; border-color: #ff9000 !important">Item
+									Descriptions</button></a> <a class="dropdown-item" href="/item/list"><button
+									type="button" class="btn btn-warning btn-sm">Items</button></a> <a
+								class="dropdown-item" href="/location/list"><button
+									type="button" class="btn btn-success btn-sm">Locations</button></a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="/user/list"><button
+									type="button" class="btn btn-primary btn-sm">Users</button></a>
+						</div></li>
+
+				</ul>
+
+
+
+				<form class="form-inline my-2 my-lg-0" action="/logout"
+					method="POST">
+					<input type="hidden" th:name="${_csrf.parameterName}"
+						th:value="${_csrf.token}">
+					<button class="btn btn-outline-success btn-sm my-2 my-sm-0"
+						type="submit">Logout</button>
+				</form>
 			</div>
 		</nav>
 
 
 	</div>
+
 
 
 </body>

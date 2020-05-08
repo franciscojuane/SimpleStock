@@ -8,7 +8,7 @@
 	<div th:insert="fragments/main :: navbar"></div>
 	
 	
-	<div th:insert="fragments/tables :: horizontal(${title},${new String[]{'id','name'}},${new String[]{'ID','Name'}},${list},'create')">
+	<div th:insert="fragments/tables :: horizontal('location',${title},${new String[]{'id','name'}},${new String[]{'ID','Name'}},${list},'create')">
 	
 	</div>
 

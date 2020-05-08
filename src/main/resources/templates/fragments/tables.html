@@ -5,53 +5,81 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div th:fragment="horizontal(title, attributes, attributeNames, elements, addurl)">
-		<h5 th:text="${title}"></h5>
-		<div th:insert="fragments/buttons :: create(${addurl})"></div>
+	<div
+		th:fragment="horizontal(entity, title, attributes, attributeNames, elements, addurl)" class="container p-0">
+		<br>
+		<div class="row no-gutters">
 		
-	
+			<div class="col-lg-2 no-gutters">
+				<h5 th:text="${title}"></h5>
+			</div>
+			<div class="col-lg-8"></div>
+			<div class="col-lg-2 text-right">	
+			
+				<div th:insert="fragments/buttons :: create(${addurl})"
+					></div>
+			</div>
+		</div>
+
+
+		<br>
+		<div class="row justify-content-center">
+		<div class="col-lg-12">
+			<table class="table table-striped ">
+				<thead>
+					<tr>
+						<th th:each="attrib: ${attributeNames}" scope="col"
+							th:text="${attrib}"></th>
+						<th style="text-align:right">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="elem : ${elements}">
+						<td scope="row" th:each="attrib, iter : ${attributes}"
+							th:text="${elem.__${attributes[iter.index]}__}"></td>
+
+						<td style="text-align:right" ><span><span class="actionButtons"
+								th:replace="fragments/buttons :: view(${entity},${elem.id})"></span><span
+								th:replace="fragments/buttons :: edit(${entity},${elem.id})"></span><span
+								th:replace="fragments/buttons :: delete(${entity},${elem.id})"></span></span></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+		</div>
+	</div>
+
+
+	<div th:fragment="vertical(title, attributes, attributeNames, element)" class="container p-0">
+		<br>
+		<div class="row">
+		<div class="col-lg-6">
+		<h5 th:text="${title}"></h5>
+		</div>
+		<div class="col-lg-4">
+		</div>
+		<div class="col-lg-2 text-right">
+		<span th:insert="fragments/buttons :: edit(${entity},${element.id})"></span><span
+			th:insert="fragments/buttons :: delete(${entity},${element.id})"></span>
+		</div>
+		</div>
 		<br>
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th th:each="attrib: ${attributeNames}" scope="col" th:text="${attrib}"></th>
-					<th>Actions</th>
+					<th scope="col">Property</th>
+					<th scope="col">Value</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="elem : ${elements}">
-					<th scope="row" th:each="attrib, iter : ${attributes}" th:text="${elem.__${attributes[iter.index]}__}"></th>
-					
-					<td><span><span
-							th:replace="fragments/buttons :: view(${entity},${elem.id})"></span><span
-							th:replace="fragments/buttons :: edit(${entity},${elem.id})"></span><span
-							th:replace="fragments/buttons :: delete(${entity},${elem.id})"></span></span></td>
+				<tr th:each="attrib, iter : ${attributes}">
+					<th th:text="${attributeNames[iter.index]}"></th>
+					<td th:text="${element.__${attributes[iter.index]}__}"></td>
 				</tr>
-
 			</tbody>
 		</table>
-	</div>
-	
-	
-	<div th:fragment="vertical(title, attributes, attributeNames, element)">
-		<br>
-	<h5 th:text="${title}"></h5><span th:insert="fragments/buttons :: edit(${entity},${element.id})"></span><span th:insert="fragments/buttons :: delete(${entity},${element.id})"></span>
-	<br>
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th scope="col">Property</th>
-				<th scope="col">Value</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="attrib, iter : ${attributes}">
-				<th th:text="${attributeNames[iter.index]}"></th>
-				<td th:text="${element.__${attributes[iter.index]}__}"></td>
-			</tr>
-		</tbody>
-	</table>
-	
+
 	</div>
 </body>
 </html>

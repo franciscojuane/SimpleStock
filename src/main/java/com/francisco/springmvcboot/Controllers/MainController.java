@@ -60,7 +60,7 @@ public class MainController {
 			m.addAttribute("list", locationService.getAll());
 			m.addAttribute("title", "Locations");
 			break;
-		case "usuario":
+		case "user":
 			m.addAttribute("list", userService.getAll());
 			m.addAttribute("title", "Users");
 			break;
@@ -244,6 +244,23 @@ public class MainController {
 	public String editLocationAction(@ModelAttribute User i) {
 		userService.update(i);
 		return "redirect:/user/view/" + i.getId();
+	}
+
+	@RequestMapping(path = "/login")
+	public String login() {
+		return "login";
+	}
+	
+	@RequestMapping(path = "/loginerror")
+	public String loginerror(Model m) {
+		m.addAttribute("error", true);
+		return "login";
+	}
+	
+	@RequestMapping(path = "/logout")
+	public String logout(Model m) {
+		m.addAttribute("logout", true);
+		return "login";
 	}
 	
 }
