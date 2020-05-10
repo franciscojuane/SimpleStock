@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>BarCode</title>
+<script>
+window.onfocus=function(){ window.close()};
+</script>
+</head>
+<body onload="javascript:window.print(); javascript:setTimeout(function(){window.close()},1);">
+<img id="barcode" th:src="'data:image/png;base64,' + ${barcode}" /><br>
+</body>
+</html>

@@ -6,15 +6,19 @@
 </head>
 <body>
 	<div th:insert="fragments/main :: navbar"></div>
-
-	<form action="/category/createAction" method="POST">
+	<br>
+	<div class="container">
+	<h4>New Category</h4>
+	<br>
+	<form action="/category/createAction" method="POST" th:object="${category}">
 	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+	<input type="hidden" name="id" th:value="*{id}">	
 		<div class="form-group">
-			<label>Name</label> <input type="text" class="form-control"
-				name="name">
+			<label>Name</label> <input type="text" th:field="*{name}" class="form-control"
+				name="name"><label th:if="${#fields.hasErrors('name')}" style="color: red;">The name is required. The length must be between 2 ad 45 characters.</label>
 		</div>
-		<input class="btn btn-primary btn-sm" type="submit" value="Enviar">
+		<input class="btn btn-primary btn-sm" type="submit" value="Save">
 	</form>
-
+</div>
 </body>
 </html>

@@ -10,8 +10,13 @@
 	<div
 		th:insert="fragments/tables :: vertical('Item',${new String[]{'id','itemDescription.name','location.name'}}, ${new String[]{'Serial Number','Name','Location'}},${item})"></div>
 	<br>
+	<center>
+		<img id="barcode" th:src="'data:image/png;base64,' + ${barcode}" /><br><br>
+		<a th:href="${'/barcode/' + item.id}" target="_blank"><input type="button" class="btn btn-primary btn-sm" value="Print Barcode"></a>
 
-	
+	</center>
+
+
 
 </body>
 </html>

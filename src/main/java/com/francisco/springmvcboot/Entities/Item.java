@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="Item")
@@ -20,10 +21,12 @@ public class Item {
 
 	@ManyToOne
 	@JoinColumn(name="ItemDescription_id")
+	@NotNull
 	private ItemDescription itemDescription;
 	
 	@ManyToOne
 	@JoinColumn(name="Location_id")
+	@NotNull
 	private Location location;
 	
 	

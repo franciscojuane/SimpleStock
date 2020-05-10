@@ -24,18 +24,26 @@
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<style>
-			td {
-				white-space: nowrap;
-			}
-			
-			.btn-group-xs>.btn, .btn-xs {
-				padding: .25rem .4rem;
-				font-size: .875rem;
-				line-height: .5;
-				border-radius: .2rem;
-			}
+		td {
+			white-space: nowrap;
+		}
+		
+		.btn-group-xs>.btn, .btn-xs {
+			padding: .25rem .4rem;
+			font-size: .875rem;
+			line-height: .5;
+			border-radius: .2rem;
+		}
 		</style>
-
+		<script type="text/javascript">
+			function printBarCode() {
+				pwin = window.open(document.getElementById("barcode").src,
+						"_blank");
+				pwin.onload = function() {
+					window.print();
+				}
+			}
+		</script>
 	</div>
 
 	<div th:fragment="navbar">
@@ -72,8 +80,12 @@
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="/user/list"><button
 									type="button" class="btn btn-primary btn-sm">Users</button></a>
+									<a class="dropdown-item" href="/logs/"><button
+									type="button" class="btn btn-info btn-sm" style="background-color: #7300cc; border-color: #7300cc;">Activity Log</button></a>
 						</div></li>
+					<li class="nav-item active"><a class="nav-link" href="/#about">About
 
+					</a></li>
 				</ul>
 
 

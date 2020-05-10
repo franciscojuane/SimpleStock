@@ -6,7 +6,7 @@
 </head>
 <body>
 	<div th:insert="fragments/main :: navbar"></div>
-	<br>
+		<div th:include="fragments/buttons :: gobacklist"></div>
 	<div
 		th:insert="fragments/tables :: vertical('Category',${new String[]{'id','name'}},${new String[]{'ID','Name'}},${category})"></div>
 	<br>

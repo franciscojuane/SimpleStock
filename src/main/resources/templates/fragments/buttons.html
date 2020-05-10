@@ -9,16 +9,29 @@
 		<a th:href="${url}"><button type="button"
 				class="btn btn-primary btn-sm">Create</button></a>
 	</div>
-	<span th:fragment="view(entity,id)">
-	<a th:href="${'/' + entity + '/view/' + id}"><button type="button" class="btn btn-success btn-sm">View</button></a>
+	<span th:fragment="view(entity,id)"> <a
+		th:href="${'/' + entity + '/view/' + id}"><button type="button"
+				class="btn btn-success btn-sm">View</button></a>
 	</span>
-	
-	<span th:fragment="edit(entity,id)">
-	 <a th:href="${'/' + entity + '/edit/' + id}"><button type="button" class="btn btn-warning btn-sm">Edit</button></a>
+
+	<span th:fragment="edit(entity,id)"> <a
+		th:href="${'/' + entity + '/edit/' + id}"><button type="button"
+				class="btn btn-warning btn-sm">Edit</button></a>
 	</span>
-	
-	<span th:fragment="delete(entity,id)">
-	<a th:href="${'/' + entity + '/delete/' + id}"><button type="button" class="btn btn-danger btn-sm">Delete</button></a>
+
+	<span th:fragment="delete(entity,id)"> <a
+		th:href="${'/' + entity + '/delete/' + id}"><button type="button"
+				class="btn btn-danger btn-sm">Delete</button></a>
 	</span>
+
+	<div th:fragment="goback" class="container-fluid">
+		<input type="button" class="btn btn-success btn-xs" value="Go Back"
+			onclick="window.location.href='/'" />
+	</div>
+
+	<div th:fragment="gobacklist" class="container-fluid">
+		<input type="button" class="btn btn-success btn-xs" value="Go Back"
+			onclick="window.location.href='../list'" />
+	</div>
 </body>
 </html>

@@ -6,10 +6,10 @@
 </head>
 <body>
 	<div th:insert="fragments/main :: navbar"></div>
-	
-	
-	<div th:insert="fragments/tables :: horizontal('itemDescription',${title},${new String[]{'id','name','weight','category.name'}},${new String[]{'ID','Name','Weight','Category'}},${list},'create')">
-	
+	<div th:include="fragments/buttons :: goback"></div>
+	<div
+		th:insert="fragments/tables :: horizontal('itemDescription',${title},${new String[]{'id','name','weight','category.name'}},${new String[]{'ID','Name','Weight','Category'}},${list},'create')">
+
 	</div>
 
 </body>

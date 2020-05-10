@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="Location")
@@ -20,6 +22,8 @@ public class Location {
 	private int id;
 	
 	@Column(name="name")
+	@NotNull
+	@Size(min=3,max=45)
 	private String name;
 
 	@OneToMany(mappedBy="location")

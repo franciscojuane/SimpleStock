@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/main :: head">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:insert="fragments/main :: navbar"></div>
+	<br>
+	<div class="container">
+		<h4>Logs</h4>
+		<br>
+		<form action="/logs" method="POST">
+			<div class="row">
+
+				<input type="hidden" th:name="${_csrf.parameterName}"
+					th:value="${_csrf.token}">
+				<div class="col-lg-6">
+					From: <input type="datetime-local" name="start" th:value="${start}" class="form-control">
+				</div>
+				<div class="col-lg-6">
+					End : <input type="datetime-local" name="end" th:value="${end}" class="form-control">
+				</div>
+				
+				</div><br>
+				<div class="row">
+				<div class="col-lg-6">
+					Operation: <select name="operation" class="form-control">
+						<option value="all" th:selected="${operation=='all'}">All</option>
+						<option value="getAll" th:selected="${operation=='getAll'}">List</option>
+						<option value="create" th:selected="${operation=='create'}">Save
+							or Update</option>
+						<option value="read" th:selected="${operation=='read'}">Read</option>
+						<option value="delete" th:selected="${operation=='delete'}">Delete</option>
+				
+					</select></div>
+				<div class="col-lg-6"> Entity: <select name="entity" class="form-control">
+						<option value="all" th:selected="${entity=='all'}">All</option>
+						<option value="category" th:selected="${entity=='category'}">Category</option>
+						<option value="item" th:selected="${entity=='item'}">Item</option>
+						<option value="itemDescription"
+							th:selected="${entity=='itemDescription'}">Item
+							Description</option>
+						<option value="location" th:selected="${entity=='location'}">Location</option>
+						<option value="user" th:selected="${entity=='user'}">User</option>
+				
+					</select> </div> <br><br></div><br> 
+				<div class="row">
+				<div class="col-lg-6">
+				User: <select name="user" class="form-control">
+						<option value="all">All</option>
+						<option th:each="us : ${users}" th:value="${us}" th:text="${us}"
+							th:selected="${user==us}"></option>
+			
+					</select> 	
+				</div>
+				<div class="col-lg-6">Limit: <select name="limit" class="form-control">
+						<option value="100" th:selected="${limit==100}">100</option>
+						<option value="200" th:selected="${limit==200}">200</option>
+						<option value="500" th:selected="${limit==500}">500</option>
+						<option value="0" th:selected="${limit==0}">No Limit</option>
+					</select>
+				</div>
+				
+			</div>
+			<br>
+			<div class="row text-right">
+				<div class="col-lg-12">
+				<input type="submit" class="btn btn-primary btn-sm" value="Search">
+				</div>
+			</div>
+			
+		</form>
+		<hr><br>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Operation</th>
+					<th>Entity</th>
+					<th>Date and Time</th>
+					<th>User</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="row : ${loglist}">
+					<td th:text="${row[0]}"></td>
+					<td th:text="${row[1]}"></td>
+					<td th:text="${row[2]}"></td>
+					<td th:text="${row[3]}"></td>
+					<td th:text="${#strings.capitalize(row[4])}"></td>
+				</tr>
+
+			</tbody>
+			</head>
+
+
+
+		</table>
+
+
+
+
+	</div>
+</body>
+</html>

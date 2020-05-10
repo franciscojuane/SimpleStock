@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,17 @@ public class GeneralAspect {
 	
 	Logger logger = LoggerFactory.getLogger(GeneralAspect.class);
 	
+	@Pointcut("execution (*  com.francisco.springmvcboot.Services.*.getLogs(..))")
+	public void getLogs() {
+		
+	}
 
-	@Before("execution(* com.francisco.springmvcboot.Services.*.*(..))")
+	@Pointcut("execution(* com.francisco.springmvcboot.Services.*.*(..))")
+	public void methodsExecution() {
+		
+	}
+	
+	@Before("methodsExecution() && !getLogs()")
 	public void add(JoinPoint jp) {
 		String method = jp.getSignature().getName().toString();
 		String entity = jp.getSignature().getDeclaringType().getSimpleName().replace("Service", "");
@@ -31,4 +41,6 @@ public class GeneralAspect {
 		jdbcTemplate.execute("INSERT INTO logs (operation,entity,datetime,user) VALUES ('" + method + "','" + entity + "','" + new Timestamp(System.currentTimeMillis()) + "','" + user + "')");
 	}
 
+	
+	
 }

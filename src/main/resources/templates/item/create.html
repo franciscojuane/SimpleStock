@@ -6,29 +6,34 @@
 </head>
 <body>
 	<div th:insert="fragments/main :: navbar"></div>
-
-	<form action="/item/createAction" method="POST">
+	<br>
+	<div class="container">
+	<h4>New Item</h4>
+	<br>
+	<form action="/item/createAction" method="POST" th:object="${item}">
 	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 		<div class="form-group">
-			
+				<input type="hidden" name="id" th:value="*{id}">
 	
-				<label>Item Description</label> <select class="form-control"
-				name="itemDescription">
+				<label>Item Description</label> 
+				<select class="form-control"name="itemDescription" th:field="*{itemDescription}"> 
 				<option value=""></option> 
-				<option th:each="elem : ${itemDescriptionList}" th:value="${elem.id}" th:text="${elem.name}" th:selected="${elem.id==itemDescription?.id}"></option>
+				<option th:each="elem : ${itemDescriptionList}" th:value="${elem.id}" th:text="${elem.name}" th:selected="${elem.id==itemdescription?.id}"></option>
 				</select>
+				<label th:if="${#fields.hasErrors('itemDescription')}" style="color:red">An Item Description must be selected.</label>
 				<br>
 				
 				<label>Location</label> <select class="form-control"
-				name="location">
+				name="location" th:field="*{location}">
 				<option value=""></option> 
 				<option th:each="elem : ${locationList}" th:value="${elem.id}" th:text="${elem.name}" th:selected="${elem.id==location?.id}"></option>
 				</select>
+				<label th:if="${#fields.hasErrors('location')}" style="color:red">A location must be selected.</label>
 				<br>
 	
 		</div>
-		<input class="btn btn-primary btn-sm" type="submit" value="Enviar">
+		<input class="btn btn-primary btn-sm" type="submit" value="Save">
 	</form>
-
+</div>
 </body>
 </html>

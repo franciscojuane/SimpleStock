@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="ItemDescription")
@@ -22,6 +24,8 @@ public class ItemDescription {
 	private int id;
 	
 	@Column(name="name")
+	@NotNull
+	@Size(min=3,max=45)
 	private String name;
 	
 	@Column(name="description")
@@ -32,6 +36,7 @@ public class ItemDescription {
 
 	@ManyToOne
 	@JoinColumn(name="Category_id")
+	@NotNull
 	private Category category;
 	
 	@OneToMany(mappedBy="itemDescription")
