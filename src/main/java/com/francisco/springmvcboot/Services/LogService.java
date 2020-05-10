@@ -27,6 +27,7 @@ public class LogService {
 			queryTxt += "AND operation = '" + operation + "'";
 		if (!entity.equals("all"))
 			queryTxt += "AND entity = '" + entity + "'";
+		queryTxt += " ORDER BY datetime DESC";
 		if (limit!=0)
 			queryTxt += " LIMIT " + limit;
 
