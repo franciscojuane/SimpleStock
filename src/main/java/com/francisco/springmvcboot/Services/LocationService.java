@@ -11,14 +11,14 @@ import com.francisco.springmvcboot.Repositories.ItemRepo;
 import com.francisco.springmvcboot.Repositories.LocationRepo;
 
 @Service
-public class LocationService implements GenericService<Location>{
+public class LocationService implements GenericService<Location> {
 
 	@Autowired
 	LocationRepo locationRepo;
-	
+
 	@Autowired
 	ItemRepo itemRepo;
-	
+
 	@Override
 	public Location create(Location t) {
 		// TODO Auto-generated method stub
@@ -28,7 +28,13 @@ public class LocationService implements GenericService<Location>{
 	@Override
 	public Location read(int id) {
 		// TODO Auto-generated method stub
-		return locationRepo.getOne(id);
+		Location l;
+		try {
+			l = locationRepo.findById(id).get();
+		} catch (Exception e) {
+			throw new GenericException("Location not found with id : " + id);
+		}
+		return l;
 	}
 
 	@Override
@@ -42,8 +48,9 @@ public class LocationService implements GenericService<Location>{
 		// TODO Auto-generated method stub
 		Location location = locationRepo.getOne(id);
 		List<Item> listItems = location.getItems();
-		for(Item i : listItems) {
-			itemRepo.delete(i);;
+		for (Item i : listItems) {
+			itemRepo.delete(i);
+			;
 		}
 		locationRepo.delete(location);
 	}

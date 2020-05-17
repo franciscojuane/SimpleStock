@@ -12,6 +12,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="Location")
 public class Location {
@@ -25,10 +30,10 @@ public class Location {
 	@NotNull
 	@Size(min=3,max=45)
 	private String name;
-
-	@OneToMany(mappedBy="location")
-	private List<Item> items;
 	
+	@OneToMany(mappedBy="location")
+	@JsonManagedReference(value="itm_loc")
+	private List<Item> items;
 	
 	
 	public List<Item> getItems() {

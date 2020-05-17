@@ -28,7 +28,13 @@ public class UserService implements GenericService<User> {
 	@Override
 	public User read(int id) {
 		// TODO Auto-generated method stub
-		return userRepo.getOne(id);
+		User u;
+		try {
+			u = userRepo.findById(id).get();
+		}catch(Exception e) {
+			throw new GenericException("User not found with id : " + id);
+		}
+		return u;
 	}
 
 	@Override

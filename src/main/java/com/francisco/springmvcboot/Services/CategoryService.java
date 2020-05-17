@@ -1,5 +1,6 @@
 package com.francisco.springmvcboot.Services;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +19,13 @@ public class CategoryService implements GenericService<Category> {
 
 	@Autowired
 	CategoryRepo categoryRepo;
-	
+
 	@Autowired
 	ItemDescriptionRepo itemDescriptionRepo;
-	
+
 	@Autowired
 	ItemRepo itemRepo;
-	
+
 	@Override
 	public Category create(Category t) {
 		// TODO Auto-generated method stub
@@ -34,7 +35,13 @@ public class CategoryService implements GenericService<Category> {
 	@Override
 	public Category read(int id) {
 		// TODO Auto-generated method stub
-		return categoryRepo.getOne(id);
+		Category cat;
+		try {
+			cat = categoryRepo.findById(id).get();
+		} catch (Exception e) {
+			throw new GenericException("Category not found with id : " + id);
+		}
+		return cat;
 	}
 
 	@Override
@@ -50,13 +57,13 @@ public class CategoryService implements GenericService<Category> {
 		List<ItemDescription> listItemDescriptions = new ArrayList<>();
 		Category category = categoryRepo.getOne(id);
 		listItemDescriptions = category.getItemDescriptions();
-		for(ItemDescription i: listItemDescriptions) {
+		for (ItemDescription i : listItemDescriptions) {
 			listItems.addAll(i.getItems());
 		}
-		for(Item i: listItems) {
+		for (Item i : listItems) {
 			itemRepo.delete(i);
 		}
-		for(ItemDescription i: listItemDescriptions) {
+		for (ItemDescription i : listItemDescriptions) {
 			itemDescriptionRepo.delete(i);
 		}
 		categoryRepo.delete(category);

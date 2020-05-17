@@ -14,8 +14,14 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="ItemDescription")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class ItemDescription {
 
 	@Id
@@ -37,9 +43,11 @@ public class ItemDescription {
 	@ManyToOne
 	@JoinColumn(name="Category_id")
 	@NotNull
+	@JsonBackReference(value="cat_itmdes")
 	private Category category;
 	
 	@OneToMany(mappedBy="itemDescription")
+	@JsonManagedReference(value="itmdes_itm")
 	private List<Item> items;
 	
 	public int getAmount() {
@@ -89,6 +97,7 @@ public class ItemDescription {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	
 
 	public List<Item> getItems() {
 		return items;

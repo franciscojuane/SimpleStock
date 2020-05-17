@@ -12,8 +12,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="Category")
+
 public class Category {
 	
 	@Id
@@ -28,6 +33,7 @@ public class Category {
 	private String name;
 
 	@OneToMany(mappedBy="category")
+	@JsonManagedReference(value="cat_itmdes")
 	private List<ItemDescription> itemDescriptions;
 
 	public Category() {

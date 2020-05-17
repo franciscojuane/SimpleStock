@@ -27,10 +27,14 @@ public class Security extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
-		http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login")
-				.defaultSuccessUrl("/").failureUrl("/loginerror").loginProcessingUrl("/loginAction").permitAll().and()
-				.logout().permitAll();
+		
+		  http.authorizeRequests().anyRequest().
+		  authenticated().and().formLogin().loginPage("/login")
+		  .defaultSuccessUrl("/").failureUrl("/loginerror").loginProcessingUrl(
+		  "/loginAction").permitAll().and() .logout().permitAll();
+		 
 
+		//http.csrf().disable().authorizeRequests().anyRequest().permitAll();
 	}
 
 }

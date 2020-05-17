@@ -28,7 +28,14 @@ public class ItemDescriptionService implements GenericService<ItemDescription> {
 	@Override
 	public ItemDescription read(int id) {
 		// TODO Auto-generated method stub
-		return itemDescriptionRepo.getOne(id);
+		ItemDescription itd;
+		try {
+			itd = itemDescriptionRepo.findById(id).get();
+		}catch(Exception e) {
+			throw new GenericException("Item Description not found with id : " + id);
+		}
+		return itd;
+		
 	}
 
 	@Override
