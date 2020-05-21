@@ -29,8 +29,8 @@ public class ItemService implements GenericService<Item> {
 			it = itemRepo.findById(id).get();
 		}catch(Exception e) {
 			System.out.println("tirada");
-			throw new GenericException("Item not found with id : " + id);
-	
+			//throw new GenericException("Item not found with id : " + id);
+			return null;
 		}
 		return it;
 	}

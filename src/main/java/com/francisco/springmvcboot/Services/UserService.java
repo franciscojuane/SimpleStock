@@ -32,7 +32,8 @@ public class UserService implements GenericService<User> {
 		try {
 			u = userRepo.findById(id).get();
 		}catch(Exception e) {
-			throw new GenericException("User not found with id : " + id);
+			return null;
+			//throw new GenericException("User not found with id : " + id);
 		}
 		return u;
 	}

@@ -32,7 +32,8 @@ public class ItemDescriptionService implements GenericService<ItemDescription> {
 		try {
 			itd = itemDescriptionRepo.findById(id).get();
 		}catch(Exception e) {
-			throw new GenericException("Item Description not found with id : " + id);
+			return null;
+			//throw new GenericException("Item Description not found with id : " + id);
 		}
 		return itd;
 		

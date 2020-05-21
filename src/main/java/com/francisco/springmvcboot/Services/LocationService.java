@@ -32,7 +32,8 @@ public class LocationService implements GenericService<Location> {
 		try {
 			l = locationRepo.findById(id).get();
 		} catch (Exception e) {
-			throw new GenericException("Location not found with id : " + id);
+			return null;
+			//throw new GenericException("Location not found with id : " + id);
 		}
 		return l;
 	}

@@ -39,7 +39,8 @@ public class CategoryService implements GenericService<Category> {
 		try {
 			cat = categoryRepo.findById(id).get();
 		} catch (Exception e) {
-			throw new GenericException("Category not found with id : " + id);
+			//throw new GenericException("Category not found with id : " + id);
+			return null;
 		}
 		return cat;
 	}
