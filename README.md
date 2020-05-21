@@ -42,6 +42,7 @@ This system will let you manage your items, their information, location and barc
 ### To Do
 
 * Rest API
+* Mobile app with barcode reading and information fetching.
 * Authorization with User Roles
 
 ### Author
