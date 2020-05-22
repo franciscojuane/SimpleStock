@@ -29,13 +29,12 @@ public class Security extends WebSecurityConfigurerAdapter {
 		// TODO Auto-generated method stub
 		
 		
-		  http.authorizeRequests().anyRequest().
+		  http.csrf().ignoringAntMatchers("/api/**").and().authorizeRequests().anyRequest().
 		  authenticated().and().formLogin().loginPage("/login")
 		  .defaultSuccessUrl("/").failureUrl("/loginerror").loginProcessingUrl(
 		  "/loginAction").permitAll().and() .logout().permitAll();
 		 
-
-		//http.csrf().disable().authorizeRequests().anyRequest().permitAll();
+		
 	}
 
 }
