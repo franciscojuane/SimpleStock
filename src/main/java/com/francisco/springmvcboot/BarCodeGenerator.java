@@ -21,7 +21,6 @@ public class BarCodeGenerator {
 
 		barcodeGenerator.generateBarcode(canvas, barcodeText);
 
-		System.out.println(barcodeText);
 		String imageAsBase64 = "";
 		try {
 			ByteArrayOutputStream output = new ByteArrayOutputStream();

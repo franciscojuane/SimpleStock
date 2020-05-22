@@ -30,10 +30,8 @@ public class ItemService implements GenericService<Item> {
 		// TODO Auto-generated method stub
 		Item it;
 		try {
-			System.out.println("intentado");
 			it = itemRepo.findById(id).get();
 		} catch (Exception e) {
-			System.out.println("tirada");
 			// throw new GenericException("Item not found with id : " + id);
 			return null;
 		}

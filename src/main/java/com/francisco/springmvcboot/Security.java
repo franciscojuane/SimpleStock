@@ -28,7 +28,7 @@ public class Security extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
 		
-		http.csrf().ignoringAntMatchers("/api/**").and().authorizeRequests().anyRequest().authenticated().and()
+		http.csrf().ignoringAntMatchers("/api/**").and().authorizeRequests().antMatchers("/api/**").permitAll().anyRequest().authenticated().and()
 				.formLogin().loginPage("/login").defaultSuccessUrl("/").failureUrl("/loginerror")
 				.loginProcessingUrl("/loginAction").permitAll().and().logout().permitAll();
 

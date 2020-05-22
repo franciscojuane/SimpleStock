@@ -38,7 +38,6 @@ public class LogService {
 
 		SqlRowSet query = jt.queryForRowSet(queryTxt);
 		String id, date;
-		System.out.println("query = " + queryTxt);
 		while (query.next()) {
 			id = String.valueOf(query.getInt(1));
 			if (query.getString(2).equals("getAll")) {

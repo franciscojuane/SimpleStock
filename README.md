@@ -38,12 +38,13 @@ This system will let you manage your items, their information, location and barc
 * Barcode Generation.
 * Security (Authentication).
 * Logging of operations with AOP.
+* Rest API
 
 ### To Do
 
-* Rest API
-* Mobile app with barcode reading and information fetching.
+* JWT Security
 * Authorization with User Roles
+* Mobile app with barcode reading and information fetching.
 
 ### Author
 

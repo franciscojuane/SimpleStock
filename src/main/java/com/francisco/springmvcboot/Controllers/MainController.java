@@ -324,7 +324,6 @@ public class MainController {
 		if (start == null) {
 			tstart = Timestamp.valueOf(LocalDateTime.now().minusDays(1));
 		} else {
-			System.out.println("start = " + start.replace('T', ' '));
 			tstart = Timestamp.valueOf(start.replace('T', ' ') + ":00");
 		}
 
