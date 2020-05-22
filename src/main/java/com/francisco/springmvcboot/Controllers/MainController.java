@@ -103,6 +103,7 @@ public class MainController {
 			m.addAttribute("barcode", barCodeGenerator.generate(String.valueOf(id)));
 		case "location":
 			m.addAttribute("location", locationService.read(id));
+			m.addAttribute("items", locationService.read(id).getItems());
 			break;
 		case "user":
 			m.addAttribute("user", userService.read(id));
