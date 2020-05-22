@@ -18,32 +18,30 @@ import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@Table(name="Item")
+@Table(name = "Item")
 public class Item implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
 
 	@ManyToOne
-	@JoinColumn(name="ItemDescription_id")
+	@JoinColumn(name = "ItemDescription_id")
 	@NotNull
-	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	@JsonIdentityReference(alwaysAsId = true)
-	@JsonBackReference(value="itmdes_itm")
+	@JsonBackReference(value = "itmdes_itm")
 	private ItemDescription itemDescription;
-	
+
 	@ManyToOne
-	@JoinColumn(name="Location_id")
+	@JoinColumn(name = "Location_id")
 	@NotNull
-	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	@JsonIdentityReference(alwaysAsId = true)
-	@JsonBackReference(value="itm_loc")
+	@JsonBackReference(value = "itm_loc")
 	private Location location;
-	
-	
-	
+
 	public ItemDescription getItemDescription() {
 		return itemDescription;
 	}
@@ -51,7 +49,7 @@ public class Item implements Serializable {
 	public void setItemDescription(ItemDescription itemDescription) {
 		this.itemDescription = itemDescription;
 	}
-	
+
 	public Location getLocation() {
 		return location;
 	}
@@ -76,6 +74,5 @@ public class Item implements Serializable {
 	public String toString() {
 		return "Item [id=" + id + "]";
 	}
-	
-	
+
 }

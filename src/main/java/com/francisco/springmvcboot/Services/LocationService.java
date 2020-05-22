@@ -13,11 +13,15 @@ import com.francisco.springmvcboot.Repositories.LocationRepo;
 @Service
 public class LocationService implements GenericService<Location> {
 
-	@Autowired
 	LocationRepo locationRepo;
+	ItemRepo itemRepo;
 
 	@Autowired
-	ItemRepo itemRepo;
+	public LocationService(LocationRepo locationRepo, ItemRepo itemRepo) {
+		super();
+		this.locationRepo = locationRepo;
+		this.itemRepo = itemRepo;
+	}
 
 	@Override
 	public Location create(Location t) {
@@ -33,7 +37,7 @@ public class LocationService implements GenericService<Location> {
 			l = locationRepo.findById(id).get();
 		} catch (Exception e) {
 			return null;
-			//throw new GenericException("Location not found with id : " + id);
+			// throw new GenericException("Location not found with id : " + id);
 		}
 		return l;
 	}

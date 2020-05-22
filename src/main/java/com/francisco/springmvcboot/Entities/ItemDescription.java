@@ -21,41 +21,41 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@Table(name="ItemDescription")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
+@Table(name = "ItemDescription")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class ItemDescription {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="name")
+
+	@Column(name = "name")
 	@NotNull
-	@Size(min=3,max=45)
+	@Size(min = 3, max = 45)
 	private String name;
-	
-	@Column(name="description")
+
+	@Column(name = "description")
 	private String description;
-	
-	@Column(name="weight")
+
+	@Column(name = "weight")
 	private Double weight;
 
 	@ManyToOne
-	@JoinColumn(name="Category_id")
+	@JoinColumn(name = "Category_id")
 	@NotNull
-	@JsonBackReference(value="cat_itmdes")
+	@JsonBackReference(value = "cat_itmdes")
 	private Category category;
-	
-	@OneToMany(mappedBy="itemDescription")
-	@JsonManagedReference(value="itmdes_itm")
+
+	@OneToMany(mappedBy = "itemDescription")
+	@JsonManagedReference(value = "itmdes_itm")
 	private List<Item> items;
-	
+
 	@JsonIgnore
 	public int getAmount() {
 		return items.size();
 	}
-	
+
 	public ItemDescription() {
 		super();
 	}
@@ -99,7 +99,6 @@ public class ItemDescription {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	
 
 	public List<Item> getItems() {
 		return items;
@@ -114,6 +113,5 @@ public class ItemDescription {
 		return "ItemDescription [id=" + id + ", name=" + name + ", description=" + description + ", weight=" + weight
 				+ "]";
 	}
-	
-	
+
 }

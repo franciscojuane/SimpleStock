@@ -28,6 +28,5 @@ public class GenericException extends RuntimeException {
 		super(arg0);
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+
 }

@@ -11,9 +11,14 @@ import com.francisco.springmvcboot.Repositories.ItemRepo;
 @Service
 public class ItemService implements GenericService<Item> {
 
-	@Autowired
 	ItemRepo itemRepo;
-	
+
+	@Autowired
+	public ItemService(ItemRepo itemRepo) {
+		super();
+		this.itemRepo = itemRepo;
+	}
+
 	@Override
 	public Item create(Item t) {
 		// TODO Auto-generated method stub
@@ -27,9 +32,9 @@ public class ItemService implements GenericService<Item> {
 		try {
 			System.out.println("intentado");
 			it = itemRepo.findById(id).get();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("tirada");
-			//throw new GenericException("Item not found with id : " + id);
+			// throw new GenericException("Item not found with id : " + id);
 			return null;
 		}
 		return it;

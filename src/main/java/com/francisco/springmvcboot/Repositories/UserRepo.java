@@ -6,9 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.francisco.springmvcboot.Entities.User;
 
-public interface UserRepo extends JpaRepository<User,Integer> {
-	
+public interface UserRepo extends JpaRepository<User, Integer> {
+
 	@Transactional
 	User findUserByUsername(String Username) throws UsernameNotFoundException;
-	
+
 }

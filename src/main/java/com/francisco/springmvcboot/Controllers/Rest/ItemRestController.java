@@ -17,6 +17,4 @@ public class ItemRestController extends GenericRestController<Item> {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 }

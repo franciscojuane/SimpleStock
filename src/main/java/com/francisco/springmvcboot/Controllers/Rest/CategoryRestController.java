@@ -9,8 +9,7 @@ import com.francisco.springmvcboot.Services.CategoryService;
 
 @RestController
 @RequestMapping("/api/category")
-public class CategoryRestController extends GenericRestController<Category>{
-
+public class CategoryRestController extends GenericRestController<Category> {
 
 	@Autowired
 	public CategoryRestController(CategoryService cs) {

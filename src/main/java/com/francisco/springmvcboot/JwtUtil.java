@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JwtUtil {
-
+	//Under Construction
 	private String secret_key = "secret";
 	
 	public String generateToken(UserDetails userDetail) {

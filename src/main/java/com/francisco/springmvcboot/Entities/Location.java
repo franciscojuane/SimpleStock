@@ -18,24 +18,23 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@Table(name="Location")
+@Table(name = "Location")
 public class Location {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="name")
+
+	@Column(name = "name")
 	@NotNull
-	@Size(min=3,max=45)
+	@Size(min = 3, max = 45)
 	private String name;
-	
-	@OneToMany(mappedBy="location")
-	@JsonManagedReference(value="itm_loc")
+
+	@OneToMany(mappedBy = "location")
+	@JsonManagedReference(value = "itm_loc")
 	private List<Item> items;
-	
-	
+
 	public List<Item> getItems() {
 		return items;
 	}
@@ -68,5 +67,5 @@ public class Location {
 	public String toString() {
 		return "Location [id=" + id + ", name=" + name + "]";
 	}
-	
+
 }

@@ -34,26 +34,29 @@ import com.francisco.springmvcboot.Services.UserService;
 @Controller
 public class MainController {
 
-	@Autowired
 	CategoryService categoryService;
-
-	@Autowired
 	ItemDescriptionService itemDescriptionService;
-
-	@Autowired
 	ItemService itemService;
-
-	@Autowired
 	LocationService locationService;
-
-	@Autowired
 	UserService userService;
-
-	@Autowired
 	BarCodeGenerator barCodeGenerator;
+	LogService logService;
+	JdbcTemplate jt;
 
 	@Autowired
-	LogService logService;
+	public MainController(CategoryService categoryService, ItemDescriptionService itemDescriptionService,
+			ItemService itemService, LocationService locationService, UserService userService,
+			BarCodeGenerator barCodeGenerator, LogService logService, JdbcTemplate jt) {
+		super();
+		this.categoryService = categoryService;
+		this.itemDescriptionService = itemDescriptionService;
+		this.itemService = itemService;
+		this.locationService = locationService;
+		this.userService = userService;
+		this.barCodeGenerator = barCodeGenerator;
+		this.logService = logService;
+		this.jt = jt;
+	}
 
 	@RequestMapping(path = "/")
 	public String index() {
@@ -98,15 +101,18 @@ public class MainController {
 		case "itemDescription":
 			m.addAttribute("itemDescription", itemDescriptionService.read(id));
 			m.addAttribute("items", itemDescriptionService.read(id).getItems());
+			break;
 		case "item":
 			m.addAttribute("item", itemService.read(id));
 			m.addAttribute("barcode", barCodeGenerator.generate(String.valueOf(id)));
+			break;
 		case "location":
 			m.addAttribute("location", locationService.read(id));
 			m.addAttribute("items", locationService.read(id).getItems());
 			break;
 		case "user":
 			m.addAttribute("user", userService.read(id));
+			break;
 		}
 
 		return entity + "/view";
@@ -139,7 +145,6 @@ public class MainController {
 
 	@RequestMapping(path = "/{entity}/create")
 	public String create(Model m, @PathVariable(name = "entity") String entity) {
-		// m.addAttribute("category", new Category());
 		switch (entity) {
 		case "category":
 			m.addAttribute("category", new Category());
@@ -160,7 +165,6 @@ public class MainController {
 			m.addAttribute("user", new User());
 			break;
 		}
-		/// agregar todas las dependencias aqui
 		return entity + "/create";
 	}
 
@@ -187,7 +191,6 @@ public class MainController {
 				i.setLocation(locationService.read(id));
 				break;
 			}
-
 			m.addAttribute("item", i);
 			m.addAttribute("itemDescriptionList", itemDescriptionService.getAll());
 			m.addAttribute("locationList", locationService.getAll());
@@ -199,15 +202,6 @@ public class MainController {
 			m.addAttribute("user", new User());
 			break;
 		}
-
-		/*
-		 * switch (entity) { case "category": m.addAttribute("category",
-		 * categoryService.read(id)); break; case "itemdescription":
-		 * m.addAttribute("itemdescription", itemDescriptionService.read(id)); break;
-		 * case "location": m.addAttribute("location", locationService.read(id));
-		 * System.out.println("por aqui tmb"); break; }
-		 */
-
 		return entity2 + "/create";
 	}
 
@@ -230,7 +224,6 @@ public class MainController {
 			userService.delete(id);
 			break;
 		}
-
 		return "redirect:/" + entity + "/list";
 	}
 
@@ -246,12 +239,6 @@ public class MainController {
 		}
 	}
 
-	@RequestMapping(path = "/category/editAction")
-	public String editCategoryAction(@ModelAttribute(name = "entity") Category category) {
-		categoryService.update(category);
-		return "redirect:/category/view/" + category.getId();
-	}
-
 	@RequestMapping(path = "/itemDescription/createAction")
 	public String createItemDescriptionAction(@Valid @ModelAttribute ItemDescription id, BindingResult br, Model m) {
 		if (br.hasErrors()) {
@@ -263,12 +250,6 @@ public class MainController {
 			return "redirect:/itemDescription/view/" + id.getId();
 		}
 
-	}
-
-	@RequestMapping(path = "/itemDescription/editAction")
-	public String editItemDescriptionAction(@ModelAttribute ItemDescription id) {
-		itemDescriptionService.update(id);
-		return "redirect:/itemDescription/view/" + id.getId();
 	}
 
 	@RequestMapping(path = "/item/createAction")
@@ -284,12 +265,6 @@ public class MainController {
 		}
 	}
 
-	@RequestMapping(path = "/item/editAction")
-	public String editItemAction(@ModelAttribute Item i) {
-		itemService.update(i);
-		return "redirect:/item/view/" + i.getId();
-	}
-
 	@RequestMapping(path = "/location/createAction")
 	public String createLocationAction(@Valid @ModelAttribute Location i, BindingResult br, Model m) {
 		if (br.hasErrors()) {
@@ -302,12 +277,6 @@ public class MainController {
 
 	}
 
-	@RequestMapping(path = "/location/editAction")
-	public String editLocationAction(@ModelAttribute Location i) {
-		locationService.update(i);
-		return "redirect:/location/view/" + i.getId();
-	}
-
 	@RequestMapping(path = "/user/createAction")
 	public String createUserAction(@Valid @ModelAttribute User i, BindingResult br, Model m) {
 		if (br.hasErrors()) {
@@ -318,12 +287,6 @@ public class MainController {
 			return "redirect:/user/view/" + i.getId();
 		}
 
-	}
-
-	@RequestMapping(path = "/user/editAction")
-	public String editLocationAction(@ModelAttribute User i) {
-		userService.update(i);
-		return "redirect:/user/view/" + i.getId();
 	}
 
 	@RequestMapping(path = "/login")
@@ -348,9 +311,6 @@ public class MainController {
 		m.addAttribute("barcode", barCodeGenerator.generate(String.valueOf(id)));
 		return "printBarCode";
 	}
-
-	@Autowired
-	JdbcTemplate jt;
 
 	@RequestMapping(path = "/logs")
 	public String log(Model m, @RequestParam(name = "start", required = false) String start,

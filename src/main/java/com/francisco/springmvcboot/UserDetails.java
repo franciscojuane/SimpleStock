@@ -1,6 +1,5 @@
 package com.francisco.springmvcboot;
 
-
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,34 +20,32 @@ import com.francisco.springmvcboot.Repositories.UserRepo;
 public class UserDetails implements UserDetailsService {
 
 	UserRepo userRepo;
-	
-
 	CategoryRepo categoryRepo;
-	
-	@Override
-	public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String username)
-			throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-
-		User u = new User() ;
-		try {
-		u = userRepo.findUserByUsername(username);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		if (u==null) {
-			throw new UsernameNotFoundException("Not found");
-		}else {
-			return new Principal(u);
-		}
-				
-	}
 
 	@Autowired
 	public UserDetails(UserRepo userRepo, CategoryRepo categoryRepo) {
 		super();
 		this.userRepo = userRepo;
 		this.categoryRepo = categoryRepo;
+	}
+
+	@Override
+	public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String username)
+			throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+
+		User u = new User();
+		try {
+			u = userRepo.findUserByUsername(username);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (u == null) {
+			throw new UsernameNotFoundException("Not found");
+		} else {
+			return new Principal(u);
+		}
+
 	}
 
 }

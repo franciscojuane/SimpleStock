@@ -17,14 +17,17 @@ import com.francisco.springmvcboot.Repositories.ItemRepo;
 @Service
 public class CategoryService implements GenericService<Category> {
 
-	@Autowired
 	CategoryRepo categoryRepo;
-
-	@Autowired
 	ItemDescriptionRepo itemDescriptionRepo;
+	ItemRepo itemRepo;
 
 	@Autowired
-	ItemRepo itemRepo;
+	public CategoryService(CategoryRepo categoryRepo, ItemDescriptionRepo itemDescriptionRepo, ItemRepo itemRepo) {
+		super();
+		this.categoryRepo = categoryRepo;
+		this.itemDescriptionRepo = itemDescriptionRepo;
+		this.itemRepo = itemRepo;
+	}
 
 	@Override
 	public Category create(Category t) {
@@ -39,7 +42,7 @@ public class CategoryService implements GenericService<Category> {
 		try {
 			cat = categoryRepo.findById(id).get();
 		} catch (Exception e) {
-			//throw new GenericException("Category not found with id : " + id);
+			// throw new GenericException("Category not found with id : " + id);
 			return null;
 		}
 		return cat;

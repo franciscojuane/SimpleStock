@@ -11,13 +11,10 @@ import com.francisco.springmvcboot.Services.GenericService;
 @RequestMapping("/api/itemDescription")
 public class ItemDescriptionRestController extends GenericRestController<ItemDescription> {
 
-	
 	@Autowired
 	public ItemDescriptionRestController(GenericService<ItemDescription> gs) {
 		super(gs);
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
+
 }

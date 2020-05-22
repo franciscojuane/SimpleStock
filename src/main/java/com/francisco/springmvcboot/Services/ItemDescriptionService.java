@@ -13,12 +13,16 @@ import com.francisco.springmvcboot.Repositories.ItemRepo;
 @Service
 public class ItemDescriptionService implements GenericService<ItemDescription> {
 
-	@Autowired
 	ItemDescriptionRepo itemDescriptionRepo;
-	
-	@Autowired
 	ItemRepo itemRepo;
-	
+
+	@Autowired
+	public ItemDescriptionService(ItemDescriptionRepo itemDescriptionRepo, ItemRepo itemRepo) {
+		super();
+		this.itemDescriptionRepo = itemDescriptionRepo;
+		this.itemRepo = itemRepo;
+	}
+
 	@Override
 	public ItemDescription create(ItemDescription t) {
 		// TODO Auto-generated method stub
@@ -31,12 +35,12 @@ public class ItemDescriptionService implements GenericService<ItemDescription> {
 		ItemDescription itd;
 		try {
 			itd = itemDescriptionRepo.findById(id).get();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			return null;
-			//throw new GenericException("Item Description not found with id : " + id);
+			// throw new GenericException("Item Description not found with id : " + id);
 		}
 		return itd;
-		
+
 	}
 
 	@Override
@@ -50,7 +54,7 @@ public class ItemDescriptionService implements GenericService<ItemDescription> {
 		// TODO Auto-generated method stub
 		ItemDescription itemdesc = itemDescriptionRepo.getOne(id);
 		List<Item> listItems = itemdesc.getItems();
-		for(Item i: listItems) {
+		for (Item i : listItems) {
 			itemRepo.delete(i);
 		}
 		itemDescriptionRepo.delete(itemdesc);

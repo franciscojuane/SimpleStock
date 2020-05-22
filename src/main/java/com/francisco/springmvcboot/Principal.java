@@ -10,8 +10,7 @@ import com.francisco.springmvcboot.Entities.User;
 public class Principal implements UserDetails {
 
 	User user;
-	
-	
+
 	public Principal(User user) {
 		this.user = user;
 	}

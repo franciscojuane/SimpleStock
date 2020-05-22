@@ -13,22 +13,22 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@Table(name="User")
+@Table(name = "User")
 public class User {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="username")
+
+	@Column(name = "username")
 	@NotNull
-	@Size(min=1)
+	@Size(min = 1)
 	private String username;
-	
-	@Column(name="password")
+
+	@Column(name = "password")
 	@NotNull
-	@Size(min=1)
+	@Size(min = 1)
 	private String password;
 
 	@Override
@@ -63,7 +63,5 @@ public class User {
 	public User() {
 		super();
 	}
-	
-	
-	
+
 }

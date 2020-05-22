@@ -12,12 +12,16 @@ import com.francisco.springmvcboot.Repositories.UserRepo;
 @Service
 public class UserService implements GenericService<User> {
 
-	@Autowired
 	UserRepo userRepo;
-	
-	@Autowired
 	PasswordEncoder pwdenc;
 	
+	@Autowired
+	public UserService(UserRepo userRepo, PasswordEncoder pwdenc) {
+		super();
+		this.userRepo = userRepo;
+		this.pwdenc = pwdenc;
+	}
+
 	@Override
 	public User create(User t) {
 		// TODO Auto-generated method stub

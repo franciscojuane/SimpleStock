@@ -7,6 +7,5 @@ import com.francisco.springmvcboot.Entities.ItemDescription;
 public interface ItemDescriptionRepo extends JpaRepository<ItemDescription, Integer> {
 
 	ItemDescription findItemDescriptionByName(String name);
-	
-	
+
 }
